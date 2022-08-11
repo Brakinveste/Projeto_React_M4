@@ -1,0 +1,10 @@
+.header-container{
+	display: flex;
+	justify-content: center;
+	min-height: 50px;
+	padding-top: 10px;
+	background-color: black;
+	color: #eee;
+	font-family: arial;
+    font-size: 12px;
+}
