@@ -73,13 +73,14 @@ const ModalForm = ({selectedUser, setSelectedUser = () => {}, selectedId, setSel
 						<div className ="card">
 								<select id="payment-card">
 									{cards.map((card,n) =>(
-										<option value={n}>Cartão com final {card.card_number.substr(12)}</option>
+										<option value={n}>Cartão com final {card.card_number.slice(12)}</option>
 									))}
 								</select>
 						</div>
 						<div className="pay-button">
 							<button type="submit" className="btn">Pagar</button>
-							{isModalRecVisible ? <ModalReceipt onClose={() => setIsModalRecVisible(false)} status={status}/> : null}
+							{isModalRecVisible ? <ModalReceipt onClose={
+								() => setIsModalRecVisible(false)} status={status} /* cartao={card.card_number.slice(-4, -1)} */  /> : null}
 						</div>
 					</form>
 				</div>

@@ -1,9 +1,9 @@
 import React from "react"
 import "./ModalReceipt.css"
-const ModalReceipt = ({onClose = () =>{}, status}) =>{
+const ModalReceipt = ({onClose = () =>{}, status, /* cartao */ }) =>{
 	let cond
 	
-	if(status === true){
+	if(status === true /* && cartao === '1111' */ ){
 		cond = ''
 	}
 	else{
