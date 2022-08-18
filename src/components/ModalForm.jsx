@@ -3,9 +3,9 @@ import "./ModalForm.css"
 import axios from "axios"
 import CurrencyInput from "react-currency-masked-input"
 import ModalReceipt from "./ModalReceipt"
-const ModalForm = ({selectedUser, setSelectedUser = () => {}, selectedId, setSelectedId = () =>{}}) =>{
-	let status = true
-	const [isModalRecVisible, setIsModalRecVisible] = useState(false)
+const ModalForm = ({selectedUser, setSelectedUser = () => {}, selectedId, isModalRecVisible, setSelectedId = () =>{}}) =>{
+	
+	
 	let cards = [
 		// valid card
 		{
@@ -38,16 +38,20 @@ const ModalForm = ({selectedUser, setSelectedUser = () => {}, selectedId, setSel
 			}
 			const addPost = axios.post('https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989', data)
 			.then(() => {
-				status = true
-				setIsModalRecVisible(true)
-				
-				setTimeout(() => setIsModalRecVisible(false), 4000)
-				setTimeout(() =>setSelectedUser(''), 4000)
-				setTimeout(() =>setSelectedId(''), 4000)
+				setIsModalRecVisible('cartaovalido')
+
+				if(cartao === '1111')
+					setIsModalRecVisible('cartaovalido')
+				else {
+					setIsModalRecVisible('cartaoinvalido')
+				}
+				//setTimeout(() => setIsModalRecVisible(false), 4000)
+				//setTimeout(() =>setSelectedUser(''), 1000)
+				//setTimeout(() =>setSelectedId(''), 4000)
 
 			})
 			.catch(()=>{
-				status = false
+				
 				setIsModalRecVisible(true)
 				})
 		}
@@ -79,8 +83,7 @@ const ModalForm = ({selectedUser, setSelectedUser = () => {}, selectedId, setSel
 						</div>
 						<div className="pay-button">
 							<button type="submit" className="btn">Pagar</button>
-							{isModalRecVisible ? <ModalReceipt onClose={
-								() => setIsModalRecVisible(false)} status={status} /* cartao={card.card_number.slice(-4, -1)} */  /> : null}
+							
 						</div>
 					</form>
 				</div>
