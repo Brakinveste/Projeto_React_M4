@@ -3,7 +3,7 @@ import "./ModalForm.css"
 import axios from "axios"
 import CurrencyInput from "react-currency-masked-input"
 import ModalReceipt from "./ModalReceipt"
-const ModalForm = ({selectedUser, setSelectedUser = () => {}, selectedId, isModalRecVisible, setSelectedId = () =>{}}) =>{
+const ModalForm = ({selectedUser, setSelectedUser = () => {}, selectedId, setIsModalRecVisible, setSelectedId = () =>{}}) =>{
 	
 	
 	let cards = [
@@ -40,13 +40,13 @@ const ModalForm = ({selectedUser, setSelectedUser = () => {}, selectedId, isModa
 			.then(() => {
 				setIsModalRecVisible('cartaovalido')
 
-				if(cartao === '1111')
+				if(cards[i].card_number === '1111111111111111')
 					setIsModalRecVisible('cartaovalido')
 				else {
 					setIsModalRecVisible('cartaoinvalido')
 				}
-				//setTimeout(() => setIsModalRecVisible(false), 4000)
-				//setTimeout(() =>setSelectedUser(''), 1000)
+				//setTimeout(() => setIsModalRecVisible(false), 1000)
+				setTimeout(() =>setSelectedUser(''), 100)
 				//setTimeout(() =>setSelectedId(''), 4000)
 
 			})

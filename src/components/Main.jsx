@@ -3,6 +3,7 @@ import Header from "./Header"
 import "./Main.css"
 import UsersList from "./UsersList"
 import ModalForm from "./ModalForm"
+import ModalReceipt from "./ModalReceipt"
 
 const Main = () =>{
 
@@ -10,6 +11,7 @@ const Main = () =>{
 	const [state, setState] = useState([])
 	//declarando selectedUser, que irá receber o nome do usuário selecionado
 	const [selectedUser, setSelectedUser] = useState('')
+	const [isModalRecVisible, setIsModalRecVisible] = useState(false)
 	const [selectedId, setSelectedId] = useState('')
 	//realizando requisição da api de forma assíncrona
 	useEffect( async () => {
@@ -28,8 +30,8 @@ const Main = () =>{
 			{/*Imprimindo lista de usuários*/}
 				<UsersList list= {state} selectedUser={selectedUser} setSelectedUser={setSelectedUser} setSelectedId={setSelectedId}/>
 			{/*Imprimindo o Modal do formulário ao setar um usuário*/}
-				{ selectedUser && <ModalForm selectedUser={selectedUser} setSelectedUser={setSelectedUser} selectedId={selectedId} setSelectedId={setSelectedId}/>} 
-
+				{ selectedUser && <ModalForm selectedUser={selectedUser} setSelectedUser={setSelectedUser} 	setIsModalRecVisible={setIsModalRecVisible} selectedId={selectedId} setSelectedId={setSelectedId}/>} 
+				{isModalRecVisible && <ModalReceipt onClose={() =>  setIsModalRecVisible(false)} isModalRecVisible={isModalRecVisible} ModalForm /> }
 			</div>
 			)
 }
